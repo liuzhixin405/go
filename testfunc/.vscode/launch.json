@@ -1,0 +1,21 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "GoLaunch",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "remotePath": "",
+            "port": 2345,
+            "host": "127.0.0.1:8088",
+            "program": "${fileDirname}//main.go",	  // 将 main.go 换成你的文件名
+            "env": {
+                "GOPATH": "D:/Go/",    // 你的GOPATH
+                "GOROOT": "D:/Program Files/Go/"	// GOROOT，GO的安装目录
+            },
+            "args": [],
+            //"showLog": true
+        }
+    ]
+}
