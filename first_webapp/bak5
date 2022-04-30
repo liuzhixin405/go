@@ -1,0 +1,37 @@
+package main
+
+import (
+	"net/http"
+)
+
+func hello(writer http.ResponseWriter, request *http.Request) {
+	//h := request.Header
+	// len := request.ContentLength
+	// body := make([]byte, len)
+	// request.Body.Read(body)
+	// fmt.Fprintln(writer, string(body))
+	//fmt.Fprintf(writer, "hello , %s!\n", h)
+	// request.ParseForm()
+	// fmt.Fprintln(writer, request.Form)
+	str := `<html>
+<head><title>Go Web Programming</title></head>
+<body><h1>Hello World</h1></body>
+</html>`
+	writer.Write([]byte(str))
+}
+
+func main() {
+
+	server := http.Server{
+		Addr: "127.0.0.1:8000",
+	}
+	http.HandleFunc("/process", hello)
+	//http2.ConfigureServer(&server, &http2.Server{})
+
+	//server.ListenAndServeTLS("cert.pem", "key.pem")
+	server.ListenAndServe()
+
+}
+
+//运行此项目只需要两个命令，1. go mod init 自定义包名,可忽略 2. go run .
+//curl -id "first_name=sausheong&last_name=chang" 127.0.0.1:8000/body

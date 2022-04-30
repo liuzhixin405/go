@@ -1,0 +1,31 @@
+package main
+
+import (
+	"fmt"
+	"net/http"
+	"reflect"
+	"runtime"
+)
+
+func hello(writer http.ResponseWriter, request *http.Request) {
+	fmt.Fprintf(writer, "hello !")
+}
+func log(h http.HandlerFunc) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		name := runtime.FuncForPC(reflect.ValueOf(h).Pointer()).Name()
+		fmt.Println("Handler fucntion called -" + name)
+		h(w, r)
+	}
+}
+
+func main() {
+
+	server := http.Server{
+		Addr: "127.0.0.1:8000",
+	}
+	http.HandleFunc("/hello", log(hello))
+	server.ListenAndServe()
+
+}
+
+//运行此项目只需要两个命令，1. go mod init 自定义包名,可忽略 2. go run .

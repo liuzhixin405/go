@@ -1,0 +1,38 @@
+package main
+
+import (
+	"fmt"
+	"net/http"
+)
+
+type HelloHandler struct{}
+type WorldHandler struct{}
+
+// func handler(writer http.ResponseWriter, request *http.Request) {
+// 	fmt.Fprintf(writer, "hello world , %s!", request.URL.Path[1:])
+// }
+
+func (h *HelloHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprint(w, "hello ")
+}
+func (h *WorldHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprint(w, "world ")
+}
+func main() {
+	// http.HandleFunc("/", handler)
+	// http.ListenAndServe(":8000", nil)
+
+	hello := HelloHandler{}
+	world := WorldHandler{}
+
+	server := http.Server{
+		Addr: "127.0.0.1:8000",
+	}
+	http.Handle("/hello", &hello)
+	http.Handle("/world", &world)
+
+	server.ListenAndServe()
+
+}
+
+//运行此项目只需要两个命令，1. go mod init 自定义包名,可忽略 2. go run .
