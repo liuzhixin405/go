@@ -1,0 +1,112 @@
+basePath: /api/v1
+host: localhost:8091
+info:
+  contact:
+    name: API Support
+    url: http://demo.com/support
+  description: This is demo server.
+  termsOfService: demo.com
+  title: Swagger  demo service API
+  version: "1.0"
+paths:
+  /account/create:
+    post:
+      consumes:
+      - application/json
+      description: creates Resource directory
+      parameters:
+      - description: name
+        in: path
+        name: name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: success
+          schema:
+            type: string
+        "400":
+          description: error
+          schema:
+            type: string
+        "404":
+          description: error
+          schema:
+            type: string
+        "500":
+          description: error
+          schema:
+            type: string
+      summary: Creates a account
+      tags:
+      - Accounts
+  /account/delete:
+    delete:
+      consumes:
+      - application/json
+      description: creates Resource directory
+      parameters:
+      - description: uuid
+        in: path
+        name: name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: success
+          schema:
+            type: string
+        "400":
+          description: error
+          schema:
+            type: string
+        "404":
+          description: error
+          schema:
+            type: string
+        "500":
+          description: error
+          schema:
+            type: string
+      summary: delete account
+      tags:
+      - Accounts
+  /account/update:
+    patch:
+      consumes:
+      - application/json
+      description: creates Resource directory
+      parameters:
+      - description: uuid
+        in: path
+        name: name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: success
+          schema:
+            type: string
+        "400":
+          description: error
+          schema:
+            type: string
+        "404":
+          description: error
+          schema:
+            type: string
+        "500":
+          description: error
+          schema:
+            type: string
+      summary: updates account
+      tags:
+      - Accounts
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+  BasicAuth:
+    type: basic
+swagger: "2.0"
