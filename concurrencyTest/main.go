@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 // import (
 // 	"sync"
@@ -126,28 +129,26 @@ import "fmt"
 // 		}
 // 	}
 // }
+
 func main() {
+	startTime := time.Now()
 	jobs := make(chan int, 100)
 	results := make(chan int, 100)
+	for count := 0; count < 10; count++ {
+		go worker(jobs, results)
+	}
 
-	go worker(jobs, results)
-	go worker(jobs, results)
-	go worker(jobs, results)
-	go worker(jobs, results)
-	go worker(jobs, results)
-	go worker(jobs, results)
-	go worker(jobs, results)
-	go worker(jobs, results)
-
-	for i := 0; i < 100; i++ {
+	for i := 0; i < 45; i++ {
 		jobs <- i
 	}
 
 	close(jobs)
 
-	for j := 0; j < 100; j++ {
+	for j := 0; j < 45; j++ {
 		fmt.Println(<-results)
 	}
+	endTime := time.Now()
+	fmt.Println("channel run time:", endTime.Sub(startTime), "ms")
 }
 
 func worker(jobs <-chan int, results chan<- int) {
@@ -158,7 +159,7 @@ func worker(jobs <-chan int, results chan<- int) {
 
 func fib(n int) int {
 	if n <= 1 {
-		return n
+		return 1
 	}
 	return fib(n-1) + fib(n-2)
 }
