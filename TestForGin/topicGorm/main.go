@@ -15,14 +15,25 @@ var DB *gorm.DB
 
 //var err error  //坑 不管是全局还是gorm都会报错
 
+// func main() {
+// 	conn := RedisDefaultPool.Get()
+// 	conn.Do("SET", "name", "lzx")
+// 	ret, err := redis.String(conn.Do("GET", "name"))
+// 	if err != nil {
+// 		log.Println(err)
+// 		return
+// 	}
+// 	log.Println(ret)
+// }
+
 func main() {
 	gin.SetMode(gin.ReleaseMode)
 	router := gin.Default()
 
 	v1 := router.Group("/v1/topics")
 	{
-		v1.GET("/:topic_id", GetTopicDetail) //curl http://localhost:8080/v1/topics/345
-
+		//v1.GET("/:topic_id", GetTopicDetail) //curl http://localhost:8080/v1/topics/345
+		v1.GET("/:topic_id", CacheDecorator(GetTopicDetail, "topic_id", "topic_%s", Topics{})) //装饰器
 		//对的设计
 		// v1.GET("", func(c *gin.Context) {
 		// 	if c.Query("username") == "" {

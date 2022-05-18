@@ -20,12 +20,62 @@ func MustLogin() gin.HandlerFunc {
 	}
 }
 
+// func GetTopicDetail(c *gin.Context) {
+
+// 	tid := c.Param("topic_id")
+// 	topics := Topics{}
+
+// 	conn := RedisDefaultPool.Get()
+// 	redisKey := "topic_" + tid
+// 	defer conn.Close()
+
+// 	ret, err := redis.Bytes(conn.Do("get", redisKey))
+// 	if err != nil {
+// 		DBHelper.Find(&topics, tid)
+// 		retData, _ := json.Marshal(topics)
+// 		if topics.TopicID == 0 {
+// 			conn.Do("setex", redisKey, 20, retData) //空数据防止缓存穿透
+// 		} else {
+// 			conn.Do("setex", redisKey, 50, retData) //正常数据
+// 		}
+
+// 		log.Println("从数据库返回")
+// 	} else {
+// 		json.Unmarshal(ret, &topics)
+// 		log.Println("从redis返回")
+
+// 	}
+// 	c.JSON(200, topics)
+
+// }
+
 func GetTopicDetail(c *gin.Context) {
 
 	tid := c.Param("topic_id")
 	topics := Topics{}
 	DBHelper.Find(&topics, tid)
-	c.JSON(200, topics)
+	c.Set("dbResult", topics)
+	// conn := RedisDefaultPool.Get()
+	// redisKey := "topic_" + tid
+	// defer conn.Close()
+
+	// ret, err := redis.Bytes(conn.Do("get", redisKey))
+	// if err != nil {
+	// 	DBHelper.Find(&topics, tid)
+	// 	retData, _ := json.Marshal(topics)
+	// 	if topics.TopicID == 0 {
+	// 		conn.Do("setex", redisKey, 20, retData) //空数据防止缓存穿透
+	// 	} else {
+	// 		conn.Do("setex", redisKey, 50, retData) //正常数据
+	// 	}
+
+	// 	log.Println("从数据库返回")
+	// } else {
+	// 	json.Unmarshal(ret, &topics)
+	// 	log.Println("从redis返回")
+
+	// }
+	// c.JSON(200, topics)
 
 }
 
