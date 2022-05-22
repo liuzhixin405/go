@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option go_package = "./userService"; //当前目录
+//option go_package = "./userService;userinfo"; //当前目录
+message userinfo{
+    string username=1;
+    int32 age=2;
+    PhoneType type=3;
+   repeated  string hobby=4;
+}
+
+enum PhoneType{
+    MOBILE=0;
+    HOME=1;
+    WORK=2;
+}
