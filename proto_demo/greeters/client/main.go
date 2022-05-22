@@ -20,5 +20,7 @@ func main() {
 	if err2 != nil {
 		log.Fatalf("could not greet: %v", err2)
 	}
+	defer grpcClient.Close()
 	log.Println("%v", res)
+	log.Println("%v", res.Message)
 }
