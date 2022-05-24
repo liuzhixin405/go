@@ -1,1 +1,1 @@
-# jianshu_sample
+gin_sample
