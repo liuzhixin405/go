@@ -1,4 +1,4 @@
-package enum
+package model
 
 type TransferDirection int
 

@@ -27,7 +27,7 @@ func InitDB() {
 		},
 	)
 
-	dsn := "root:1230@/transfer?charset=utf8mb4&parseTime=True&loc=Local" //给个错误看看启动效果
+	dsn := "root:123456@@tcp(8.142.71.127:3306)/transfer?charset=utf8mb4&parseTime=True&loc=Local" //给个错误看看启动效果
 
 	DBHelper, err = gorm.Open(mysql.Open(dsn), &gorm.Config{
 		Logger: newLogger,
