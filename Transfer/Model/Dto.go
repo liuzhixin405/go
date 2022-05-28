@@ -1,10 +1,10 @@
 package model
 
-import "time"
 
 type Dto struct {
+	
 	Id         string `gorm:"primary_key"`
-	CreateTime *time.Time
+	CreateTime int64
 	CreatorId  string
 	Deleted    bool
 }

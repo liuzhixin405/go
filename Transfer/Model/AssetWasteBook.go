@@ -1,7 +1,7 @@
 package model
 
 type AssetWasteBook struct {
-	Dto
+	       Dto
 	CustomerId                string
 	BusinessId                string
 	CoinId                    string

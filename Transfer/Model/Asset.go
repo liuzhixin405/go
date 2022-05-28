@@ -1,7 +1,8 @@
 package model
-
+//import "gorm.io/gorm"
 type Asset struct {
-	Dto
+
+	    Dto
 	CustomerId        string
 	BusinessId        string
 	CoinId            string
