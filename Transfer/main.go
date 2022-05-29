@@ -28,6 +28,6 @@ func main() {
 	}
 }
 
-//curl -X POST http://localhost:8080/v1/transfer/getavailablequantity
+//curl -X POST http://localhost:8080/v1/transfer/getavailablequantity  -d coin=1  -d customerId=test001
 //curl -X POST http://localhost:8080/v1/transfer/confirmtransfer
 // curl -X POST http://localhost:8080/v1/transfer/transferasset
