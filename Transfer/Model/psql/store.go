@@ -19,8 +19,6 @@ var pdb *gorm.DB
 var store model.Store
 var stroreOnce sync.Once
 
-var psqlErr error
-
 type Store struct {
 	db *gorm.DB
 }

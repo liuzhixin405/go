@@ -7,7 +7,7 @@ import (
 
 func StartServer() {
 	gbeConfig := conf.GetConfig()
-	httpServer := NewHttpServer(gbeConfig.DataSource.Addr)
+	httpServer := NewHttpServer(gbeConfig.RestServer.Addr)
 	go httpServer.Start()
 	log.Println("rest servwer start")
 }
