@@ -32,22 +32,20 @@ type AssetWasteBook struct {
 	CoinId                    string
 	Remarks                   string
 	AssociatedOrderId         string
-	OriginalAvailableQuantity decimal.Decimal //原始可用
-	ChangeQuantity            decimal.Decimal //更改数量
-	AvailableQuantity         decimal.Decimal //可用数量
-	OriginalFrozenQuantity    decimal.Decimal //原始冻结
-	ChangeFrozenQuantity      decimal.Decimal //更改冻结
-	FrozenQuantity            decimal.Decimal //冻结
-	AssetsWasteBookType       AssetsWasteBookType     //流水类型
+	OriginalAvailableQuantity decimal.Decimal     //原始可用
+	ChangeQuantity            decimal.Decimal     //更改数量
+	AvailableQuantity         decimal.Decimal     //可用数量
+	OriginalFrozenQuantity    decimal.Decimal     //原始冻结
+	ChangeFrozenQuantity      decimal.Decimal     //更改冻结
+	FrozenQuantity            decimal.Decimal     //冻结
+	AssetsWasteBookType       AssetsWasteBookType //流水类型
 }
 
 type TransferDirection int
 
 const (
-	FuturesToSpot TransferDirection = iota
-	SpotToFutures
-	FuturesToFiat
-	FiatToFutures
+	ToThird TransferDirection = iota
+	InThird
 )
 
 type TransferStatus int
