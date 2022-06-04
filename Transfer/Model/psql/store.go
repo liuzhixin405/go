@@ -1,14 +1,15 @@
 package psql
 
 import (
-	"sync"
 	"log"
 	"os"
+	"sync"
 	"time"
 
 	"transferasset/model"
 
 	"github.com/kjk/betterguid"
+	"github.com/shopspring/decimal"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
@@ -24,10 +25,10 @@ type Store struct {
 	db *gorm.DB
 }
 
-func SharedStore() model.Store{
-    stroreOnce.Do(func() {
-		err:=InitPsqlDB()
-		if err !=nil{
+func SharedStore() model.Store {
+	stroreOnce.Do(func() {
+		err := InitPsqlDB()
+		if err != nil {
 			panic(err)
 		}
 		store = NewStore(pdb)
@@ -36,13 +37,13 @@ func SharedStore() model.Store{
 	return store
 }
 
-func NewStore(db *gorm.DB) *Store{
-return &Store{
-	db:db,
+func NewStore(db *gorm.DB) *Store {
+	return &Store{
+		db: db,
 	}
 }
 
-func InitPsqlDB() error{
+func InitPsqlDB() error {
 	newLogger := logger.New(
 		log.New(os.Stdout, "\r\n", log.LstdFlags), // io writer（日志输出的目标，前缀和日志包含的内容——译者注）
 		logger.Config{
@@ -82,28 +83,28 @@ func InitPsqlDB() error{
 		CustomerId:        "test001",
 		BusinessId:        "1",
 		CoinId:            "1",
-		AvaliableQuantity: 100, //可用
-		FrozenQuantity:    0,   //占用
-		Include:           0,   //划入
-		Drawout:           0,   //划出
+		AvaliableQuantity: decimal.NewFromFloat(100.0), //可用
+		FrozenQuantity:    decimal.Zero,                //占用
+		Include:           decimal.Zero,                //划入
+		Drawout:           decimal.Zero,                //划出
 	}
 	pdb.Create(&asset)
 	pdb.AutoMigrate(&model.Asset{}, &model.AssetWasteBook{}, &model.AssetTransferRecord{})
 	return nil
 }
 
-func (s *Store) BeginTx() (model.Store,error){
-	db:=s.db.Begin()
-	if db.Error !=nil{
-		return nil,db.Error
+func (s *Store) BeginTx() (model.Store, error) {
+	db := s.db.Begin()
+	if db.Error != nil {
+		return nil, db.Error
 	}
-	return NewStore(db),nil
+	return NewStore(db), nil
 }
 
-func (s *Store) Rollback() error{
+func (s *Store) Rollback() error {
 	return s.db.Rollback().Error
 }
 
-func (s *Store) CommitTx() error{
+func (s *Store) CommitTx() error {
 	return s.db.Commit().Error
 }

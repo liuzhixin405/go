@@ -6,11 +6,11 @@ import (
 	"github.com/shopspring/decimal"
 )
 
-func (s *Store) GetCoinAvailableQuantity(customerId string, coin string) float64 {
+func (s *Store) GetCoinAvailableQuantity(customerId string, coin string) decimal.Decimal {
 	var asset model.Asset
 	s.db.Where(&model.Asset{CustomerId: customerId, CoinId: coin, BusinessId: "1"}).First(&asset)
-	if asset.AvaliableQuantity == 0 {
-		return 0
+	if asset.AvaliableQuantity == decimal.Zero {
+		return decimal.Zero
 	} else {
 		return asset.AvaliableQuantity
 	}

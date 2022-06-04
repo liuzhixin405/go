@@ -1,7 +1,7 @@
 package rest
 
 import (
-	"fmt"
+	"log"
 	"transferasset/conf"
 )
 
@@ -9,5 +9,5 @@ func StartServer() {
 	gbeConfig := conf.GetConfig()
 	httpServer := NewHttpServer(gbeConfig.DataSource.Addr)
 	go httpServer.Start()
-	fmt.Println("rest servwer start")
+	log.Println("rest servwer start")
 }

@@ -11,9 +11,9 @@ func TransferAssets(token, orderId, coin string, amount decimal.Decimal, side mo
 }
 
 func ConfirmTransfer(orderId string, success bool) bool {
-
+	return true
 }
 
 func GetCoinAvailableQuantity(customerId string, coin string) decimal.Decimal {
-
+	return decimal.NewFromInt32(123)
 }
