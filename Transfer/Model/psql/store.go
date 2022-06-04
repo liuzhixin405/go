@@ -1,7 +1,7 @@
-package db
+package psql
 
 import (
-	"fmt"
+	"sync"
 	"log"
 	"os"
 	"time"
@@ -14,11 +14,35 @@ import (
 	"gorm.io/gorm/logger"
 )
 
-var PsqlHelper *gorm.DB
+var pdb *gorm.DB
+var store model.Store
+var stroreOnce sync.Once
 
 var psqlErr error
 
-func InitPsqlDB() {
+type Store struct {
+	db *gorm.DB
+}
+
+func SharedStore() model.Store{
+    stroreOnce.Do(func() {
+		err:=InitPsqlDB()
+		if err !=nil{
+			panic(err)
+		}
+		store = NewStore(pdb)
+	})
+
+	return store
+}
+
+func NewStore(db *gorm.DB) *Store{
+return &Store{
+	db:db,
+	}
+}
+
+func InitPsqlDB() error{
 	newLogger := logger.New(
 		log.New(os.Stdout, "\r\n", log.LstdFlags), // io writer（日志输出的目标，前缀和日志包含的内容——译者注）
 		logger.Config{
@@ -32,7 +56,7 @@ func InitPsqlDB() {
 	PsqlHelper, psqlErr := gorm.Open(postgres.Open(dsn), &gorm.Config{Logger: newLogger})
 
 	if psqlErr != nil {
-		fmt.Println(psqlErr)
+		return psqlErr
 	}
 	sqlDB, _ := PsqlHelper.DB()
 	// 获取通用数据库对象 sql.DB ，然后使用其提供的功能
@@ -46,7 +70,7 @@ func InitPsqlDB() {
 	// SetConnMaxLifetime 设置了连接可复用的最大时间。
 	sqlDB.SetConnMaxLifetime(time.Hour)
 
-	PsqlHelper.Logger.LogMode(logger.Info)
+	pdb.Logger.LogMode(logger.Info)
 	createAt := time.Now()
 	asset := model.Asset{
 		Dto: model.Dto{
@@ -63,6 +87,23 @@ func InitPsqlDB() {
 		Include:           0,   //划入
 		Drawout:           0,   //划出
 	}
-	PsqlHelper.Create(&asset)
-	PsqlHelper.AutoMigrate(&model.Asset{}, &model.AssetWasteBook{}, &model.AssetTransferRecord{})
+	pdb.Create(&asset)
+	pdb.AutoMigrate(&model.Asset{}, &model.AssetWasteBook{}, &model.AssetTransferRecord{})
+	return nil
+}
+
+func (s *Store) BeginTx() (model.Store,error){
+	db:=s.db.Begin()
+	if db.Error !=nil{
+		return nil,db.Error
+	}
+	return NewStore(db),nil
+}
+
+func (s *Store) Rollback() error{
+	return s.db.Rollback().Error
+}
+
+func (s *Store) CommitTx() error{
+	return s.db.Commit().Error
 }

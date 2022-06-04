@@ -1,4 +1,4 @@
-package api
+package rest
 
 import (
 	"log"
@@ -6,23 +6,21 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type TransferController struct{}
-
-func (tra TransferController) GetCoinAvailableQuantity(c *gin.Context) {
+func GetCoinAvailableQuantity(c *gin.Context) {
 	customerId := c.PostForm("customerid")
 	coin := c.PostForm("coin")
 	log.Println("customerid=", customerId, " coin=", coin)
 	c.JSON(200, 100)
 }
 
-func (tra TransferController) ConfirmTransfer(c *gin.Context) {
+func ConfirmTransfer(c *gin.Context) {
 	orderId := c.PostForm("orderid")
 	success := c.PostForm("success")
 	log.Println("orderId=", orderId, " success=", success)
 	c.String(200, "true")
 }
 
-func (tra TransferController) TransferAssets(c *gin.Context) {
+func TransferAssets(c *gin.Context) {
 	token := c.PostForm("token")
 	orderId := c.PostForm("orderid")
 	amount := c.PostForm("amount")
