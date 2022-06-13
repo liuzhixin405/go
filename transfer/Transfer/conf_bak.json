@@ -1,0 +1,13 @@
+{
+    "restServer": {
+        "addr": ":8088"
+      },
+      "dataSource": {
+        "driverName": "mysql",
+        "addr": "127.0.0.1:3306",
+        "database": "spot",
+        "user": "root",
+        "password": "123456@",
+        "enableAutoMigrate": true
+      }
+}
