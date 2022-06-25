@@ -1,0 +1,23 @@
+swagger: "2.0"
+info: {}
+basePath: /v1
+paths:
+  /main/get/:
+    get:
+      tags:
+      - main
+      description: |-
+        get Main
+        <br>
+      operationId: MainController.测试
+      responses:
+        "200":
+          description: ""
+        "400":
+          description: Invalid email supplied
+        "404":
+          description: main not found
+tags:
+- name: main
+  description: |
+    Main API
