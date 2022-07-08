@@ -1,0 +1,44 @@
+package main
+
+import (
+	"fmt"
+	"math/rand"
+	"sync"
+	"time"
+)
+
+var wg sync.WaitGroup
+
+func main() {
+	count := make(chan int)
+	wg.Add(2)
+
+	go player("Nadal", count)
+	go player("Djokovic", count)
+	count <- 1
+	wg.Wait()
+}
+
+func init() {
+	rand.Seed(time.Now().UnixNano())
+}
+
+func player(name string, count chan int) {
+	defer wg.Done()
+	for {
+		ball, ok := <-count
+		if !ok {
+			fmt.Printf("Player %s Won\n", name)
+			return
+		}
+		n := rand.Intn(100)
+		if n%13 == 0 {
+			fmt.Printf("Player %s Missed\n", name)
+			close(count)
+			return
+		}
+		fmt.Printf("Player %s Hit %d\n", name, ball)
+		ball++
+		count <- ball
+	}
+}

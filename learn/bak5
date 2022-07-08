@@ -1,0 +1,62 @@
+package main
+
+import "fmt"
+
+type duration int
+
+func (d *duration) pretty() string {
+	return fmt.Sprintf("Duration: %d", *d)
+}
+
+func main() {
+
+	// fred := admin{
+	// 	person: user{
+	// 		name:       "lisa",
+	// 		email:      "lisa@email.com",
+	// 		ext:        123,
+	// 		privileged: true,
+	// 	},
+	// 	level: "super",
+	// }
+	// fmt.Println(fred)
+
+	bill := user{"Bill", "bill@email.com"}
+	bill.notify()
+	sendNotification(bill)
+	fmt.Println(bill)
+
+}
+
+func sendNotification(n notifier) {
+	n.notify()
+}
+
+type user struct {
+	name  string
+	email string
+}
+
+// type user struct {
+// 	name       string
+// 	email      string
+// 	ext        int
+// 	privileged bool
+// }
+
+// type admin struct {
+// 	person user
+// 	level  string
+// }
+
+func (u user) notify() {
+	fmt.Printf("Sending user Email To %s<%s>\n", u.name, u.email)
+}
+
+func (u *user) changeEmail(email string) {
+	u.email = email
+}
+
+type notifier interface {
+	notify()
+}
