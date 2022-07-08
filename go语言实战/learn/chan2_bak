@@ -8,6 +8,7 @@ import (
 func main() {
 
 	msg := make(chan string)
+	defer close(msg)
 	go send(msg)
 	go receive(msg)
 	time.Sleep(time.Second)
@@ -17,6 +18,7 @@ func send(msg chan string) {
 	str := "hello world"
 	fmt.Println("ready send msg:", str)
 	msg <- str
+
 }
 func receive(msg chan string) {
 	recMsg, ok := <-msg
@@ -24,6 +26,7 @@ func receive(msg chan string) {
 		panic("error")
 	}
 	fmt.Println("receive msg:", recMsg)
+
 }
 
 //现实中的错误写法
