@@ -1,11 +1,5 @@
 package main
 
-import (
-	"fmt"
-	//"main/stackArray"
-	"main/arrayList"
-)
-
 /*测试arraylist*/
 // func main() {
 // 	list := arrayList.NewArrayList()
@@ -73,19 +67,71 @@ import (
 // }
 
 //测试 arraylistiteratorstack
-func main() {
-	mystack := arrayList.NewArrayListStackX()
-	mystack.Push(1)
-	mystack.Push(10)
-	mystack.Push(12)
+// func main() {
+// 	mystack := arrayList.NewArrayListStackX()
+// 	mystack.Push(1)
+// 	mystack.Push(10)
+// 	mystack.Push(12)
 
-	// fmt.Println(mystack.Pop())
-	// fmt.Println(mystack.Pop())
-	// fmt.Println(mystack.Pop())
-	// fmt.Println(mystack.Pop())
+// 	// fmt.Println(mystack.Pop())
+// 	// fmt.Println(mystack.Pop())
+// 	// fmt.Println(mystack.Pop())
+// 	// fmt.Println(mystack.Pop())
 
-	for it:=mystack.Myit;it.HasNext();{
-		item,_:=it.Next()
-	    fmt.Println(item)
-	}
-}
+// 	for it:=mystack.Myit;it.HasNext();{
+// 		item,_:=it.Next()
+// 	    fmt.Println(item)
+// 	}
+// }
+
+//递归
+// func main() {
+// 	mystack := stackArray.NewStack()
+// 	mystack.Push(5)
+// 	last := 0
+// 	for !mystack.IsEmpty() {
+// 		data := mystack.Pop()
+
+// 		if data == 0 {
+// 			last += 0
+// 		} else {
+// 			last += data.(int)
+// 			mystack.Push((data.(int) - 1))
+// 		}
+// 	}
+// 	fmt.Println(last)
+
+// }
+
+//"main/arrayList"
+
+//斐波那契数列
+// func FAB(num int) int {
+// 	if num == 1 || num == 2 {
+// 		return 1
+// 	}
+// 	return FAB(num-1) + FAB(num-2)
+// }
+
+// func main(){
+// 	fmt.Println(FAB(7))
+// }
+
+//递归斐波那契  通过栈实现的递归
+// func main() {
+// 	mystack := stackArray.NewStack()
+// 	mystack.Push(7)
+// 	last := 0
+// 	for !mystack.IsEmpty() {
+// 		data := mystack.Pop()
+
+// 		if data == 1 || data == 2 {
+// 			last += 1
+// 		} else {
+// 			mystack.Push((data.(int) - 1))
+// 			mystack.Push((data.(int) - 2))
+// 		}
+// 	}
+// 	fmt.Println(last)
+
+// }
