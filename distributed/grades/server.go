@@ -53,7 +53,7 @@ func (sh studentsHandler) getAll(w http.ResponseWriter, r *http.Request) {
 		log.Println(err)
 		return
 	}
-	w.Header().Add("Content-type", "application/json")
+	w.Header().Add("Content-Type", "application/json")
 	w.Write(data)
 }
 func (sh studentsHandler) getOne(w http.ResponseWriter, r *http.Request, id int) {
@@ -71,7 +71,7 @@ func (sh studentsHandler) getOne(w http.ResponseWriter, r *http.Request, id int)
 		log.Println("Failed to serialize student: ", err)
 		return
 	}
-	w.Header().Add("Content-type", "application/json")
+	w.Header().Add("Content-Type", "application/json")
 	w.Write(data)
 }
 
@@ -99,7 +99,7 @@ func (sh studentsHandler) addGrade(w http.ResponseWriter, r *http.Request, id in
 		log.Println(err)
 		return
 	}
-	w.Header().Add("Content-type", "application/json")
+	w.Header().Add("Content-Type", "application/json")
 	w.Write(data)
 }
 func (sh studentsHandler) toJSON(obj interface{}) ([]byte, error) {

@@ -79,7 +79,7 @@ func (r registry) sendRequiredServices(reg Registration) error {
 			if serviceReg.ServiceName == reqService {
 				p.Added = append(p.Added, patchEntry{
 					Name: serviceReg.ServiceName,
-					URL:  reg.ServiceURL,
+					URL:  serviceReg.ServiceURL,
 				})
 			}
 		}
