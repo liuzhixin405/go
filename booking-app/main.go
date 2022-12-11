@@ -103,7 +103,7 @@ func bookTicket(remaingingTickets uint, userTickets uint, firstName string, last
 		fmt.Printf("we only have %v\n tickets remaing , so you can't book %v tickets \n", remaingingTickets, userTickets)
 	}
 	bookings = append(bookings, userData)
-	fmt.Print("List of bookings is %v\n", bookings)
+	fmt.Printf("list of bookings is %v \n", bookings)
 	fmt.Printf("thank  you %v  %v for booking  %v tickets, you will receive a confirmation email at %v \n", firstName, lastName, userTickets, email)
 	fmt.Printf("%v tickets remaing for %v\n", remaingingTickets, conferenceName)
 }
@@ -112,7 +112,7 @@ func sendTicket(userTickets uint, firstName string, lastName string, email strin
 	time.Sleep(20 * time.Second)
 	var ticket = fmt.Sprintf("%v tickets for %v %v", userTickets, firstName, lastName)
 	fmt.Println("********************")
-	fmt.Printf("Sending ticket:\n %v \nto email address %v\n", ticket, email)
+	fmt.Printf("Sending ticket:\n %v \n to email address %v\n", ticket, email)
 	fmt.Println("********************")
 	wg.Done()
 }
