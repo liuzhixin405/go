@@ -5,19 +5,25 @@ import (
 	"login/service"
 
 	"github.com/gin-gonic/gin"
-	"github.com/micro/go-micro/v2/registry/service"
 )
 
 func Login(c *gin.Context) {
-	userName := c.PostForm("suername")
-	password := c.PostForm("password")
-	isLogin := service.Login(userName, password)
-	if isLogin != true {
-		c.JSON(404, "账号密码错误")
+	var loginDTO loginDto
+
+	if err := c.BindJSON(&loginDTO); err != nil {
+		log.Fatal(err)
 	}
 
-	log.Println("username=", userName, "password=", password)
-	c.JSON(200, "string")
+	var lservice service.LoginService
+	lservice = service.Service{}
+	isLogin := lservice.Login(loginDTO.UserName, loginDTO.PassWord)
+	if isLogin != true {
+		c.JSON(404, "账号密码错误")
+		log.Println("username=", loginDTO.UserName, "password=", loginDTO.PassWord)
+	} else {
+		c.JSON(200, "登陆成功")
+	}
+
 }
 
 func Greeting(c *gin.Context) {

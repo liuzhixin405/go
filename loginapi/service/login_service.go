@@ -1,17 +1,28 @@
 package service
 
-import "login/model/psql"
+import (
+	"fmt"
+	"login/model/psql"
+)
 
-func Login(userName string, password string) bool {
-	tx, err := psql.SharedStore().BeginTx()
+type Service struct{}
+
+func (l Service) Login(userName string, password string) bool {
+
+	tx, err := psql.NewStore()
 	if err != nil {
-		return false
+		panic(err)
 	}
-	defer func() { _ = tx.Rollback() }()
+	defer tx.Close()
+	fmt.Println("isLogin start")
+	isLogin, err := tx.UserLogin(userName, password)
+	fmt.Println("isLogin=", isLogin)
+	if err != nil {
+		panic(err)
+	}
+	return isLogin
+}
 
-	isLogin := tx.Login(userName, password)
-	if isLogin != true {
-		return false
-	}
-	return true
+type LoginService interface {
+	Login(userName string, password string) bool
 }

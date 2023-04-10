@@ -26,7 +26,7 @@ func (server *HttpServer) Start() {
 	})
 	v1 := router.Group("/v1/login")
 	{
-		v1.POST("/Login", Login)
+		v1.POST("/", Login)
 		v1.GET("/greeting", Greeting)
 	}
 	//router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
