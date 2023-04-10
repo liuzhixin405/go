@@ -15,6 +15,7 @@ func (l Service) Login(userName string, password string) bool {
 	}
 	defer tx.Close()
 	fmt.Println("isLogin start")
+	fmt.Println("username=", userName, "password=", password)
 	isLogin, err := tx.UserLogin(userName, password)
 	fmt.Println("isLogin=", isLogin)
 	if err != nil {

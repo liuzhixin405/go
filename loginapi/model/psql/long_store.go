@@ -1,11 +1,6 @@
 package psql
 
-import (
-	"fmt"
-)
-
 func (s *Store) UserLogin(userName string, passWord string) (bool, error) {
-	fmt.Println("sql=>username=", userName, "password=", passWord)
 	query := "SELECT COUNT(*) FROM User WHERE username = ? AND password = ?" //表名是区分大小写的
 
 	// 执行查询语句并获取结果
