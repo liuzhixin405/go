@@ -5,11 +5,15 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Attach to Process",
+            "name": "Launch",
             "type": "go",
-            "request": "attach",
-            "mode": "local",
-            "processId": 0
+            "request": "launch",
+            "mode": "debug",
+            "program": "${workspaceFolder}/main.go",
+            "args": [],
+            
+            "host": "127.0.0.1",
+            "showLog": true
         }
     ]
 }

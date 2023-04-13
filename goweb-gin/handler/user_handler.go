@@ -2,12 +2,13 @@ package handler
 
 import (
 	"fmt"
-	"github.com/gin-gonic/gin"
-	"github.com/gin-gonic/gin/binding"
 	"go-web-demo/component"
 	"go-web-demo/handler/request"
 	"go-web-demo/service"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
+	"github.com/gin-gonic/gin/binding"
 )
 
 func Login(c *gin.Context) {
