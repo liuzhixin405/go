@@ -1,0 +1,16 @@
+server:
+  port: 8080
+
+mysql:
+  username: root
+  password: 1230
+  host: 192.168.237.240
+  port: 3306
+  dbname: casbin_demo
+  timeout: 10s
+
+localCache:
+  expireTime: 60
+
+casbin:
+  model: config/rbac_model.conf

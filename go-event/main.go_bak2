@@ -1,0 +1,46 @@
+package main
+
+import "fmt"
+
+// EventCallback 是回调函数类型
+type EventCallback func(interface{})
+
+// EventManager 是事件管理器类型
+type EventManager struct {
+    events map[string][]EventCallback
+}
+
+// NewEventManager 创建事件管理器
+func NewEventManager() *EventManager {
+    return &EventManager{
+        events: make(map[string][]EventCallback),
+    }
+}
+
+// Register 注册事件回调函数
+func (em *EventManager) Register(name string, cb EventCallback) {
+    em.events[name] = append(em.events[name], cb)
+}
+
+// Trigger 触发事件
+func (em *EventManager) Trigger(name string, param interface{}) {
+    cbs := em.events[name]
+    for _, cb := range cbs {
+        cb(param)
+    }
+}
+
+func main() {
+    em := NewEventManager()
+
+    // 添加两个事件回调函数
+    em.Register("eventA", func(v interface{}) {
+        fmt.Println("eventA callback 1:", v)
+    })
+    em.Register("eventA", func(v interface{}) {
+        fmt.Println("eventA callback 2:", v)
+    })
+
+    // 触发事件
+    em.Trigger("eventA", "hello world")
+}
