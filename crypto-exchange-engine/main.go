@@ -63,7 +63,7 @@ func createConsumer() *cluster.Consumer {
 	config.Consumer.Offsets.Initial = sarama.OffsetOldest
 
 	// create the consumer
-	consumer, err := cluster.NewConsumer([]string{"127.0.0.1:9092"}, "myconsumer", []string{"orders"}, config)
+	consumer, err := cluster.NewConsumer([]string{"192.168.237.240:9092"}, "myconsumer", []string{"orders"}, config)
 	if err != nil {
 		log.Fatal("Unable to connect consumer to kafka cluster")
 	}
@@ -93,7 +93,7 @@ func createProducer() sarama.AsyncProducer {
 	config.Producer.Return.Successes = false
 	config.Producer.Return.Errors = true
 	config.Producer.RequiredAcks = sarama.WaitForAll
-	producer, err := sarama.NewAsyncProducer([]string{"127.0.0.1:9092"}, config)
+	producer, err := sarama.NewAsyncProducer([]string{"192.168.237.240:9092"}, config)
 	if err != nil {
 		log.Fatal("Unable to connect producer to kafka server")
 	}
