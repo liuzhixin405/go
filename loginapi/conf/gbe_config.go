@@ -2,8 +2,8 @@ package conf
 
 import (
 	"encoding/json"
-	"io/ioutil"
 	"sync"
+	"os"
 )
 
 type GbeConfig struct {
@@ -29,7 +29,7 @@ var configOnce sync.Once
 
 func GetConfig() *GbeConfig {
 	configOnce.Do(func() {
-		bytes, err := ioutil.ReadFile("conf.json")
+		bytes, err := os.ReadFile("conf.json")
 		if err != nil {
 			panic(err)
 		}
