@@ -11,7 +11,7 @@ type Store struct {
 }
 
 func NewStore() (*Store, error) {
-	db, err := sql.Open("mysql", "root:1230@tcp(192.168.237.240:3306)/test")
+	db, err := sql.Open("mysql", "root:123456@tcp(127.0.0.1:3306)/mydb")
 	if err != nil {
 		return nil, err
 	}
