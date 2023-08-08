@@ -1,4 +1,0 @@
-rootProject.name = 'webapisample'
-include 'webapi'
-include 'util'
-

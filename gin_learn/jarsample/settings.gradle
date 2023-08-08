@@ -1,7 +1,0 @@
-rootProject.name = 'webapisample'
-include 'webapi'
-include 'util'
-include 'itest'
-include 'test1'
-include 'test2'
-
