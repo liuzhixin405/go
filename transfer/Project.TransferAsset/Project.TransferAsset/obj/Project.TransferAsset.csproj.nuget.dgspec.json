@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\GitHub\\exercise\\Project.TransferAsset\\Project.TransferAsset\\Project.TransferAsset.csproj": {}
+    "D:\\github\\go\\transfer\\Project.TransferAsset\\Project.TransferAsset\\Project.TransferAsset.csproj": {}
   },
   "projects": {
-    "D:\\GitHub\\exercise\\Project.TransferAsset\\Project.TransferAsset\\Project.TransferAsset.csproj": {
+    "D:\\github\\go\\transfer\\Project.TransferAsset\\Project.TransferAsset\\Project.TransferAsset.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GitHub\\exercise\\Project.TransferAsset\\Project.TransferAsset\\Project.TransferAsset.csproj",
+        "projectUniqueName": "D:\\github\\go\\transfer\\Project.TransferAsset\\Project.TransferAsset\\Project.TransferAsset.csproj",
         "projectName": "Project.TransferAsset",
-        "projectPath": "D:\\GitHub\\exercise\\Project.TransferAsset\\Project.TransferAsset\\Project.TransferAsset.csproj",
-        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-        "outputPath": "D:\\GitHub\\exercise\\Project.TransferAsset\\Project.TransferAsset\\obj\\",
+        "projectPath": "D:\\github\\go\\transfer\\Project.TransferAsset\\Project.TransferAsset\\Project.TransferAsset.csproj",
+        "packagesPath": "C:\\Users\\16491\\.nuget\\packages\\",
+        "outputPath": "D:\\github\\go\\transfer\\Project.TransferAsset\\Project.TransferAsset\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\16491\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +22,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\sdk\\7.0.307\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -73,7 +74,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -85,7 +87,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.307\\RuntimeIdentifierGraph.json"
         }
       }
     }
