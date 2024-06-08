@@ -1,0 +1,17 @@
+{
+    "appOptions":{
+        "name":"go-webapi"
+    },
+    "echoHttpOptions":{
+        "name":"catalogs",
+        "port":"9000"
+    },
+    "gormOptions":{
+        "host":"localhost",
+        "port":5432,
+        "user":"test",
+        "password":"test",
+        "dbname":"catalogs_db",
+        "sslmode":false
+    }
+}

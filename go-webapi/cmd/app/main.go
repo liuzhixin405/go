@@ -1,5 +1,8 @@
 package main
 
+import applicationbuilder "microproject/internal/catalogs/shared/app/application_builder"
 func main() {
-	println("Hello, world!")
+	builder := applicationbuilder.NewApplicationBuilder()
+	app:= builder.Build()
+	app.Run()
 }
