@@ -3,8 +3,9 @@
         "name":"go-webapi"
     },
     "echoHttpOptions":{
-        "name":"catalogs",
-        "port":"9000"
+        "name":"test-echo-http",
+        "port":"8088",
+        "host":"localhost"
     },
     "gormOptions":{
         "host":"localhost",

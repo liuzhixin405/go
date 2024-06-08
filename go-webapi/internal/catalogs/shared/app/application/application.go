@@ -50,7 +50,7 @@ func (app *Application) Start(ctx context.Context) {
 
 func (app *Application) Stop(ctx context.Context) {
 	app.Logger.Info("Stopping application")
-	echoStartHook(ctx, app)
+	echoStopHook(ctx, app)
 	app.Contrainer.Delete()
 }
 
@@ -61,8 +61,16 @@ func (app *Application) Wait() <-chan os.Signal {
 }
 
 func echoStartHook(startCtx context.Context, app *Application) {
-	if err := app.Echo.Start(app.Cfg.EchohttpOptions.Port); !errors.Is(err, http.ErrServerClosed) {
+	if err := app.Echo.Start(":" + app.Cfg.EchohttpOptions.Port); !errors.Is(err, http.ErrServerClosed) {
 		log.Fatalf("Failed to start echo server: %v", err)
 	}
 	log.Println("Stopped serving new connections")
+}
+
+func echoStopHook(stopCtx context.Context, app *Application) {
+	go func() {
+		if err := app.Echo.Shutdown(stopCtx); err != nil {
+			log.Printf("Failed to stop echo server: %v", err)
+		}
+	}()
 }
