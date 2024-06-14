@@ -3,6 +3,7 @@ package api
 import (
 	"context"
 	"cryptotrading/pb"
+	"database/sql"
 	"log"
 	"net/http"
 
@@ -10,7 +11,7 @@ import (
 	"google.golang.org/grpc"
 )
 
-func SetupRouter() *gin.Engine {
+func SetupRouter(db *sql.DB) *gin.Engine {
 	r := gin.Default()
 
 	r.POST("/trade", func(c *gin.Context) {
