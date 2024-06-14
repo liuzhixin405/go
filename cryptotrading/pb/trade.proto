@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package pb;
+option go_package = "/pb";
+service TradeService {
+    rpc ExecuteTrade (TradeRequest) returns (TradeResponse);
+}
+
+message TradeRequest {
+    string user_id = 1;
+    string from_currency = 2;
+    string to_currency = 3;
+    double amount = 4;
+}
+
+message TradeResponse {
+    bool success = 1;
+    string message = 2;
+}
