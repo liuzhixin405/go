@@ -20,7 +20,7 @@ func (s *orderService) CreateOrder(userID int, fromCurrency string, toCurrency s
 		FromCurrency: fromCurrency,
 		ToCurrency:   toCurrency,
 		Amount:       amount,
-		Status:       "pending",
+		Status:       PENDING,
 	}
 	orderID, err := s.orderRepo.Create(order)
 	if err != nil {

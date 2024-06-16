@@ -74,7 +74,7 @@ func generateOrders(userID int, orders chan<- order.Order, orderservice order.Or
 				FromCurrency: "BTC/USDT",
 				ToCurrency:   "ETH/USDT",
 				Amount:       100.0,
-				Status:       "Created",
+				Status:       order.PENDING,
 			}
 			orders <- order
 			orderID++
@@ -88,7 +88,7 @@ func processTrades(trades <-chan trade.Trade, tradeService trade.TradeService, w
 	defer wg.Done()
 	for trade := range trades {
 		log.Println("Processing trade: ", trade)
-		_, err := tradeService.ExecuteTrade(trade.UserID, trade.OrderID, trade.Amount, "buy")
+		_, err := tradeService.ExecuteTrade(trade.UserID, trade.OrderID, trade.Amount, string(trade.Direction))
 		if err != nil {
 			log.Println(err)
 			continue

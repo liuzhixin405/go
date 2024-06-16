@@ -37,7 +37,7 @@ func (s *tradeService) ExecuteTrade(userID, orderID int, amount float64, directi
 		UserID:    userID,
 		OrderID:   orderID,
 		Amount:    amount,
-		Direction: direction,
+		Direction: Buy,
 	})
 	if err != nil {
 		return 0, err
