@@ -1,0 +1,49 @@
+// package main
+
+// import "fmt"
+
+// type Postgres struct {
+// 	Host     string
+// 	Port     int
+// 	UserName string
+// 	Password string
+// }
+
+// type PostgresOption func(*Postgres)
+
+// func NewPostgres(options ...PostgresOption) *Postgres {
+// 	p := &Postgres{
+// 		Host:     "localhost",
+// 		Port:     5432,
+// 		UserName: "default",
+// 		Password: "password",
+// 	}
+// 	for _, option := range options {
+// 		option(p)
+// 	}
+// 	return p
+// }
+
+// func WithHost(host string) PostgresOption {
+// 	return func(p *Postgres) {
+// 		p.Host = host
+// 	}
+// }
+// func WithPort(port int) PostgresOption {
+// 	return func(p *Postgres) {
+// 		p.Port = port
+// 	}
+// }
+
+// func WithCredentials(username, password string) PostgresOption {
+// 	return func(p *Postgres) {
+// 		p.UserName = username
+// 		p.Password = password
+// 	}
+// }
+// func main() {
+// 	p1 := NewPostgres()
+// 	fmt.Printf("Postgres 1: %+v\n", p1)
+// 	p2 := NewPostgres(WithHost("192.168.1.100"), WithPort(5433), WithCredentials("admin", "password"))
+// 	fmt.Printf("Postgres 2: %+v\n", p2)
+// }

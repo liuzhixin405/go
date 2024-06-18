@@ -1,0 +1,26 @@
+package main
+
+import (
+	"fmt"
+	"log"
+	"net/http"
+)
+
+func logMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		fmt.Println("before request")
+		next.ServeHTTP(w, r)
+		fmt.Println("after request")
+	})
+}
+func hwHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "h w")
+}
+func main() {
+	handlerWrapped := http.HandlerFunc(hwHandler)
+	http.Handle("/", logMiddleware(handlerWrapped))
+	err := http.ListenAndServe(":8080", nil)
+	if err != nil {
+		log.Fatal(err)
+	}
+}
