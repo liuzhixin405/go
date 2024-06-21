@@ -1,0 +1,7 @@
+{
+  "_id": "ObjectId",
+  "totalAmount": "Number",
+  "totalCount": "Number",
+  "remainingAmount": "Number",
+  "remainingCount": "Number"
+}

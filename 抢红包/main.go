@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"math/rand"
 	"time"
 )
@@ -11,8 +12,8 @@ var r = rand.New(rand.NewSource(time.Now().UnixNano()))
 func main() {
 	totalAmount := 100.0
 	numbers := 10
-	amounts := doubeleAverage(totalAmount, numbers)
-	//amounts := remainingAverage(totalAmount, numbers)
+	//amounts := doubeleAverage(totalAmount, numbers)
+	amounts := remainingAverage(totalAmount, numbers)
 	//amounts := fixedAmount(totalAmount, numbers)
 	//amounts := linearDecrement(totalAmount, numbers)
 	for i, amount := range amounts {
@@ -50,6 +51,9 @@ func remainingAverage(totalAmount float64, numPeople int) []float64 {
 		amount := r.Float64() * avg * 2
 		if amount < 0.01 {
 			amount = 0.01
+		}
+		if amount > 20 {
+			log.Println("金额大于20")
 		}
 		amounts[i] = amount
 		totalAmount -= amount

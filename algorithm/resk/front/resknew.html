@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>微信群抢红包</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+        .section h2 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+        form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+        }
+        form input[type="text"],
+        form input[type="number"] {
+            padding: 10px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 150px;
+        }
+        form button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        form button:hover {
+            background-color: #45a049;
+        }
+        #error-message {
+            color: red;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        #result {
+            margin-top: 10px;
+            font-weight: bold;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>微信群抢红包</h1>
+
+        <div class="section">
+            <h2>发红包</h2>
+            <form id="sendRedPacketForm">
+                <input type="number" id="totalAmount" placeholder="总金额" required>
+                <input type="number" id="totalCount" placeholder="红包个数" required>
+                <button type="submit">发红包</button>
+            </form>
+        </div>
+
+        <div class="section">
+            <h2>抢红包</h2>
+            <form id="grabRedPacketForm">
+                <input type="text" id="redPacketId" placeholder="红包ID" required>
+                <input type="text" id="grabber" placeholder="抢红包用户" required>
+                <button type="submit">抢红包</button>
+            </form>
+        </div>
+
+        <div id="error-message"></div>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        var host = 'http://localhost:8080';
+
+        document.getElementById('sendRedPacketForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const totalAmount = document.getElementById('totalAmount').value;
+            const totalCount = document.getElementById('totalCount').value;
+
+            fetch(host + '/sendRedPacket', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    totalAmount: parseFloat(totalAmount), // 确保总金额是数字类型
+                    totalCount: parseInt(totalCount)     // 确保总数是整数类型
+                })
+            })
+            .then(response => {
+                if (response.status === 200) {
+                    return response.json(); // 成功响应，继续处理 JSON 数据
+                } else {
+                    throw new Error('请求失败: ' + response.status); // 非 200 状态码，抛出错误
+                }
+            })
+            .then(data => {
+                document.getElementById('result').innerText = `红包ID: ${data.redPacketId}`;
+                document.getElementById('error-message').innerText = ''; // 清空错误消息
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('error-message').innerText = `发生错误: ${error.message}`;
+                document.getElementById('result').innerText = ''; // 清空结果
+            });
+        });
+
+        document.getElementById('grabRedPacketForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const redPacketId = document.getElementById('redPacketId').value;
+            const grabber = document.getElementById('grabber').value;
+
+            fetch(host + '/grabRedPacket', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    redPacketId: parseInt(redPacketId),
+                    grabber: grabber
+                })
+            })
+            .then(response => {
+                if (response.status === 200) {
+                    return response.json(); // 成功响应，继续处理 JSON 数据
+                } else {
+                    throw new Error('请求失败: ' + response.status); // 非 200 状态码，抛出错误
+                }
+            })
+            .then(data => {
+                document.getElementById('result').innerText = `抢到的金额: ${data.amount}`;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('error-message').innerText = `发生错误: ${error.message}`;
+                document.getElementById('result').innerText = ''; // 清空结果
+            });
+        });
+    </script>
+</body>
+</html>

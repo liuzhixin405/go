@@ -1,0 +1,7 @@
+{
+  "_id": "ObjectId",
+  "redPacketId": "ObjectId",
+  "amount": "Number",
+  "grabber": "String",
+  "timestamp": "Date"
+}
