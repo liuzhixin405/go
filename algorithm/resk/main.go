@@ -31,7 +31,7 @@ var db *sql.DB
 
 func main() {
 	var err error
-	dsn := "root:123456Aa@tcp(127.0.0.1:3306)/redpacketdb"
+	dsn := "root:123456@tcp(127.0.0.1:3307)/redpacketdb"
 	db, err = sql.Open("mysql", dsn)
 	if err != nil {
 		log.Fatal(err)
@@ -45,6 +45,11 @@ func main() {
 	}
 
 	r := gin.Default()
+	r.Static("/static", "./static")
+	r.LoadHTMLGlob("templates/*")
+	r.GET("/", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "index.html", gin.H{})
+	})
 	// 设置跨域中间件
 	r.Use(func(c *gin.Context) {
 		c.Writer.Header().Set("Access-Control-Allow-Origin", "*") // 允许所有来源访问，生产环境应谨慎使用
