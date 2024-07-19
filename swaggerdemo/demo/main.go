@@ -1,8 +1,8 @@
 package main
 
 import (
-	"controler/controller"
-	_ "controler/docs"
+	"demo/controller"
+	_ "demo/docs"
 	"log"
 	"net/http"
 

@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: swaggerdemo-deployment
+spec:
+  replicas: 2  # 设置副本数
+  selector:
+    matchLabels:
+      app: swaggerdemo
+  template:
+    metadata:
+      labels:
+        app: swaggerdemo
+    spec:
+      containers:
+      - name: swaggerdemo
+        image: docker.io/drvictorer/swaggerdemo:latest
+        ports:
+        - containerPort: 8091  # 容器暴露的端口

@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: swaggerdemo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: swaggerdemo
+  template:
+    metadata:
+      labels:
+        app: swaggerdemo
+    spec:
+      containers:
+      - name: swaggerdemo
+        image: docker.io/drvictorer/swaggerdemo:latest
+        ports:
+        - containerPort: 8091
+      imagePullSecrets:
+      - name: myregistrykey

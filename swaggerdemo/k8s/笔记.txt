@@ -1,0 +1,30 @@
+这是minikube地址
+
+
+这是代理   172.20.96.1为ws地址桥接地址
+minikube start --docker-env http_proxy=http://172.20.96.1:7890                --docker-env https_proxy=http://172.20.96.1:7890                --docker-env no_proxy=localhost,127.0.0.1,10.96.0.0/12  --cpus=4 --memory=8192
+这是公共仓库
+kubectl run swaggerdemo  --image=drvictorer/swaggerdemo:latest --port=8080
+
+kubectl  expose pod/swaggerdemo --type="NodePort" --port 8091 
+  
+
+kubectl create secret docker-registry myregistrykey   --docker-server=https://index.docker.io/v1/   --docker-username=账号   --docker-password=密码   --docker-email=邮箱
+kubectl get secrets  查看生成的密钥文件
+
+kubectl apply -f mypod.yml  改用文件 使用文件能完成多个步骤
+kubectl get secret myregistrykey -o yaml  (解码查看内容)
+
+
+kubectl logs -f swaggerdemo-596bb9d6d4-mvqvf (查看日志) 
+kubectl describe pod swaggerdemo-596bb9d6d4-mvqvf （明细）
+
+
+kubectl run swaggerdemo  --image=docker.io/drvictorer/swaggerdemo:latest --port=8091 
+minikube image ls (查看镜像)
+ 
+
+kubectl delete deployment swaggerdemo  （删除服务后不会新建）
+
+
+http://172.19.56.183:31815/swagger/index.html
