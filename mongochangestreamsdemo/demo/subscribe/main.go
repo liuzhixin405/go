@@ -10,8 +10,8 @@ import (
 )
 
 func main() {
-	// 设置 MongoDB 客户端
-	clientOptions := options.Client().ApplyURI("mongodb://localhost:27017") //mongo单机模式不支持这种监听
+	// 设置 MongoDB 客户端mongo单机模式不支持这种监听 单机报错 2024/08/10 11:18:54 (Location40573) The $changeStream stage is only supported on replica sets
+	clientOptions := options.Client().ApplyURI("mongodb://localhost:27017")
 	client, err := mongo.Connect(context.TODO(), clientOptions)
 	if err != nil {
 		log.Fatal(err)

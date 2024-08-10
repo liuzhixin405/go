@@ -1,0 +1,5 @@
+
+demo目录下启动sub端
+go run subscribe\main.go
+demo目录下启动pub端
+go run publish\main.go
