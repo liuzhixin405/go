@@ -1,0 +1,8 @@
+[INFO][server.go:34] 2025/02/22 19:01:41 start listen
+[INFO][server.go:57] 2025/02/22 19:02:51 accepted link
+[WARN][echo.go:51] 2025/02/22 19:02:51 read tcp 127.0.0.1:6379->127.0.0.1:62288: wsarecv: An established connection was aborted by the software in your host machine.
+[INFO][server.go:57] 2025/02/22 19:02:52 accepted link
+[WARN][echo.go:51] 2025/02/22 19:02:52 read tcp 127.0.0.1:6379->127.0.0.1:62289: wsarecv: An established connection was aborted by the software in your host machine.
+[INFO][server.go:42] 2025/02/22 19:06:13 shutting down
+[INFO][echo.go:63] 2025/02/22 19:06:13 handler shutting down
+[INFO][echo.go:63] 2025/02/22 19:06:13 handler shutting down
