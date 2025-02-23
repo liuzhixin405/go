@@ -1,0 +1,9 @@
+[INFO][server.go:34] 2025/02/23 20:04:43 start listen
+[INFO][server.go:57] 2025/02/23 20:05:03 accepted link
+[INFO][handler.go:58] 2025/02/23 20:05:07 connection closed:127.0.0.1:57094
+[INFO][server.go:57] 2025/02/23 20:05:09 accepted link
+[ERROR][handler.go:77] 2025/02/23 20:05:33 require multi bulk reply
+[ERROR][handler.go:77] 2025/02/23 20:05:33 require multi bulk reply
+[INFO][handler.go:58] 2025/02/23 20:05:44 connection closed:127.0.0.1:57095
+[INFO][server.go:42] 2025/02/23 20:05:45 shutting down
+[INFO][handler.go:90] 2025/02/23 20:05:45 handler shutting down

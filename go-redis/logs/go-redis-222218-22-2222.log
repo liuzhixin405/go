@@ -1,6 +1,0 @@
-[INFO][server.go:34] 2025/02/22 19:06:18 start listen
-[INFO][server.go:57] 2025/02/22 19:06:49 accepted link
-[INFO][server.go:42] 2025/02/22 19:07:57 shutting down
-[INFO][echo.go:63] 2025/02/22 19:07:57 handler shutting down
-[WARN][echo.go:51] 2025/02/22 19:07:57 read tcp 172.26.192.1:6379->172.26.192.1:62654: use of closed network connection
-[INFO][echo.go:63] 2025/02/22 19:07:57 handler shutting down
